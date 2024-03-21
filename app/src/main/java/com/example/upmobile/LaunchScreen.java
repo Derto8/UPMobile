@@ -11,13 +11,17 @@ import android.database.sqlite.SQLiteDatabase;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
+import android.view.View;
 
+import com.example.upmobile.databinding.LaunchScreenBinding;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-public class MainActivity extends AppCompatActivity {
+public class LaunchScreen extends AppCompatActivity {
+
+    private LaunchScreenBinding binding;
     ConnDB connDB;
     Cursor cursor;
     SQLiteDatabase db;
@@ -25,14 +29,27 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.launch_main);
+        binding = LaunchScreenBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
+
+        connDB = new ConnDB(this);
+        db = connDB.getReadableDatabase();
+        if(isInternetAvailable(getApplicationContext())){
+            binding.progressBar.setVisibility(View.VISIBLE);
+        } else{
+            binding.progressBar.setVisibility(View.GONE);
+            startActivity(new Intent(LaunchScreen.this, MainScreen.class));
+            finish();
+        }
     }
 
-    public boolean isInternerAvailable(Context context) {
+    public boolean isInternetAvailable(Context context) {
         ConnectivityManager connectivityManager = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
 
-        return activeNetworkInfo != null && activeNetworkInfo.isConnected();
+        if(activeNetworkInfo.isConnected())
+            return true;
+        return false;
     }
 
     public void foodsGet(){
@@ -67,10 +84,10 @@ public class MainActivity extends AppCompatActivity {
                                 cv.put("img", idd.child("img").getValue(String.class));
                                 db.insert("foods", null, cv);
                             }
-                            startActivity(new Intent(MainActivity.this, MainScreen.class));
+                            startActivity(new Intent(LaunchScreen.this, MainScreen.class));
                             finish();
                         } else {
-                            startActivity(new Intent(MainActivity.this, MainScreen.class));
+                            startActivity(new Intent(LaunchScreen.this, MainScreen.class));
                             finish();
                         }
                     }
