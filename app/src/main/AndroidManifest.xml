@@ -18,6 +18,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.UPMobile"
         tools:targetApi="31">
+
+        <activity android:name=".SignUpScreen"
+            android:exported="false"/>
+        <activity android:name=".SignInScreen"
+            android:exported="false"/>
+
         <activity
             android:name=".BordingScreen"
             android:exported="true">

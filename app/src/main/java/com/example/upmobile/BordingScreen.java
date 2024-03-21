@@ -66,6 +66,7 @@ public class BordingScreen extends AppCompatActivity {
                 sign_up.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
+                        startActivity(new Intent(BordingScreen.this,SignUpScreen.class));
                     }
                 });
 

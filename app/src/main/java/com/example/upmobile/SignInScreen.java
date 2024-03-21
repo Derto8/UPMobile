@@ -32,7 +32,7 @@ public class SignInScreen extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if(binding.password.length() != 0 && binding.email.length() != 0){
-                    Matcher match = Pattern.compile("^[a-z0-9]+@[a-z0-9]+\\.[a-z]{1,3}$").matcher(binding.email.getText());
+                    Matcher match = Pattern.compile("^[a-z0-9]+@[a-z0-9]+\\.[a-z]{1,3}$").matcher(binding.email.getText().toString());
                     if(match.matches()){
                         FirebaseAuth.getInstance().signInWithEmailAndPassword(binding.email.getText().toString(), binding.password.getText().toString())
                                 .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
