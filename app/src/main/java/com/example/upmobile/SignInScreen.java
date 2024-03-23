@@ -32,7 +32,7 @@ public class SignInScreen extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if(binding.password.length() != 0 && binding.email.length() != 0){
-                    Matcher match = Pattern.compile("^[a-z0-9]+@[a-z0-9]+\\.[a-z]{1,3}$").matcher(binding.email.getText().toString());
+                    Matcher match = Pattern.compile("([a-zA-Z0-9._-]+@[a-zA-Z0-9._-]+\\.[a-zA-Z0-9_-]+)").matcher(binding.email.getText().toString());
                     if(match.matches()){
                         FirebaseAuth.getInstance().signInWithEmailAndPassword(binding.email.getText().toString(), binding.password.getText().toString())
                                 .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
@@ -42,7 +42,7 @@ public class SignInScreen extends AppCompatActivity {
                                             startActivity(new Intent(SignInScreen.this, LaunchScreen.class));
                                             finish();
                                         } else
-                                            Toast.makeText(v.getContext(), "Польватель не найден", Toast.LENGTH_SHORT).show();
+                                            Extensions.AlertDialog("Оповещение", "Польватель не найден", SignInScreen.this);
                                     }
                                 });
                     } else Extensions.AlertDialog("Оповещение", "Неверно введена почта!", SignInScreen.this);

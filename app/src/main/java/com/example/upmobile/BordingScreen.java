@@ -12,6 +12,7 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import com.example.upmobile.databinding.OnBoardingScreenBinding;
+import com.example.upmobile.static_classies.Extensions;
 
 public class BordingScreen extends AppCompatActivity {
     private OnBoardingScreenBinding binding;
@@ -48,7 +49,7 @@ public class BordingScreen extends AppCompatActivity {
                 Button sign_in = findViewById(R.id.btnSignIn);
                 Button sign_up = findViewById(R.id.btnSignUp);
                 TextView goust = findViewById(R.id.goust);
-                if (isInternetAvailable(getApplicationContext())) {
+                if (Extensions.hasConnection(getApplicationContext())) {
                     goust.setVisibility(View.GONE);
 
                 } else {
@@ -74,15 +75,6 @@ public class BordingScreen extends AppCompatActivity {
             start = 0;
             end = 0;
         }
-        return false;
-    }
-
-    public boolean isInternetAvailable(Context context) {
-        ConnectivityManager connectivityManager = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
-        NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
-
-        if(activeNetworkInfo.isConnected())
-            return true;
         return false;
     }
 }

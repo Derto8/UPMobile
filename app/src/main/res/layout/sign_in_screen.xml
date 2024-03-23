@@ -33,7 +33,7 @@
                 android:layout_marginTop="60dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Email"
+                android:text="@string/email"
                 android:textSize="15sp"/>
             <EditText
                 android:id="@+id/email"
@@ -43,7 +43,7 @@
                 android:layout_marginTop="20dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Password"
+                android:text="@string/password"
                 android:textSize="15sp"/>
             <EditText
                 android:id="@+id/password"
@@ -54,7 +54,7 @@
                 android:layout_marginTop="50dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Forgit password?"
+                android:text="@string/forgotPass"
                 android:textSize="15sp"
                 android:textColor="#FA4A0C"/>
             <Button
@@ -62,7 +62,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
-                android:text="Login"
+                android:text="@string/login_btn"
                 android:background="@drawable/btn_radius"/>
         </LinearLayout>
     </LinearLayout>

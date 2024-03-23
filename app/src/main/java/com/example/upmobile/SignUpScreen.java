@@ -10,6 +10,7 @@ import com.example.upmobile.databinding.SingUpScreenBinding;
 import com.example.upmobile.static_classies.Extensions;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.FirebaseApp;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.FirebaseDatabase;
@@ -39,13 +40,13 @@ public class SignUpScreen extends AppCompatActivity {
             public void onClick(View v) {
                 if(binding.email.length() != 0 || binding.password.length() != 0 || binding.fullName.length() != 0 || binding.phone.length() != 0){
 
-                    if(!validation("^[a-z0-9]+@[a-z0-9]+\\.[a-z]{1,3}$", binding.email.getText().toString())){
+                    if(!validation("([a-zA-Z0-9._-]+@[a-zA-Z0-9._-]+\\.[a-zA-Z0-9_-]+)", binding.email.getText().toString())){
                         Extensions.AlertDialog("Оповещение", "Введите почту по маске name@domenname.ru", SignUpScreen.this);
                         return;
                     }
 
-                    if(!validation("\"^\\+7\\s?[0-7|9]?[0-9]{2}\\s?[0-9]{3}\\s?[0-9]{2}\\s?[0-9]{2}\"", binding.phone.getText().toString())){
-                        Extensions.AlertDialog("Оповещение", "Введите номер телефона по маске +7 ХХХ ХХХ ХХ ХХ", SignUpScreen.this);
+                    if(!validation("^\\+7\\d{10}$", binding.phone.getText().toString())){
+                        Extensions.AlertDialog("Оповещение", "Введите номер телефона по маске +7ХХХХХХХХХХ", SignUpScreen.this);
                         return;
                     }
 
@@ -59,6 +60,7 @@ public class SignUpScreen extends AppCompatActivity {
                         return;
                     }
 
+                    FirebaseApp.initializeApp(getApplicationContext());
                     FirebaseAuth.getInstance().createUserWithEmailAndPassword(binding.email.getText().toString(), binding.password.getText().toString())
                             .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                                 @Override
