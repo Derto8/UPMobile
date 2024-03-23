@@ -10,10 +10,9 @@ public class MainAdapter extends FragmentStateAdapter {
     @NonNull
     @Override
     public Fragment createFragment(int position) {
-        switch (position){
-
-        }
+        return null;
     }
+
 
     @Override
     public int getItemCount() {

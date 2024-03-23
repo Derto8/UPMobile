@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "312444383314",
+    "project_id": "upmobile-59a62",
+    "storage_bucket": "upmobile-59a62.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:312444383314:android:f40550a901417817902f8b",
+        "android_client_info": {
+          "package_name": "com.example.upmobile"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBPZubRY9uGl3Nr7HcTsejwbp939iwY3kk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
