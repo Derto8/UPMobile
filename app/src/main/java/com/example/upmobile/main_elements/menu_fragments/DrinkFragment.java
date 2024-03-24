@@ -14,25 +14,24 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.example.upmobile.ConnDB;
-import com.example.upmobile.databinding.FoodFragmentBinding;
 import com.example.upmobile.interfaces.IItemClickListener;
 import com.example.upmobile.interfaces.IMenuClickListener;
 import com.example.upmobile.main_elements.MenuAdapter;
 import com.example.upmobile.main_elements.SelectedItemAdapter;
 import com.example.upmobile.main_elements.models.MenuViewModel;
-import com.example.upmobile.databinding.DrinksFragmentBinding;
+import com.example.upmobile.databinding.DrinkFragmentBinding;
 import com.example.upmobile.main_elements.models.SelectedItemViewModel;
 
 import java.util.ArrayList;
 
-public class DrinksFragment extends Fragment implements IItemClickListener, IMenuClickListener {
+public class DrinkFragment extends Fragment implements IItemClickListener, IMenuClickListener {
 
-    DrinksFragmentBinding binding;
+    DrinkFragmentBinding binding;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        binding = DrinksFragmentBinding.inflate(inflater, container, false);
+        binding = DrinkFragmentBinding.inflate(inflater, container, false);
         loadDrinks();
         return binding.getRoot();
     }
