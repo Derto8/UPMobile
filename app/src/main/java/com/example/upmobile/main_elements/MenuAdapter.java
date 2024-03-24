@@ -8,12 +8,14 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.annotation.GlideModule;
 import com.example.upmobile.R;
 import com.example.upmobile.main_elements.models.MenuItemViewHolder;
 import com.example.upmobile.main_elements.models.MenuViewModel;
 import com.example.upmobile.interfaces.IMenuClickListener;
 
 import java.util.ArrayList;
+
 
 public class MenuAdapter extends RecyclerView.Adapter<MenuItemViewHolder> {
 
@@ -37,6 +39,11 @@ public class MenuAdapter extends RecyclerView.Adapter<MenuItemViewHolder> {
         holder.name.setText(menu.name);
         holder.price.setText(menu.price);
         Glide.with(holder.itemView.getContext()).load(menu.image).into(holder.image);
+        holder.itemView.setOnClickListener(c -> {
+            if (_menuClickListener != null) {
+                _menuClickListener.onMenuClickFunc(menu);
+            }
+        });
     }
 
     @Override

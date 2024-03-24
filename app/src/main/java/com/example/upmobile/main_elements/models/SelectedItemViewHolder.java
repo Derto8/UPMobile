@@ -18,7 +18,7 @@ public class SelectedItemViewHolder extends RecyclerView.ViewHolder {
         super(itemView);
 
         name = itemView.findViewById(R.id.Name);
-        price = itemView.findViewById(R.id.Price);
-        image = itemView.findViewById(R.id.Image);
+        price = itemView.findViewById(R.id.price);
+        image = itemView.findViewById(R.id.imge);
     }
 }

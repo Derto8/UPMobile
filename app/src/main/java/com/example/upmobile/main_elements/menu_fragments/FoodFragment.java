@@ -14,6 +14,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
+import com.bumptech.glide.annotation.GlideModule;
 import com.example.upmobile.ConnDB;
 import com.example.upmobile.interfaces.IItemClickListener;
 import com.example.upmobile.interfaces.IMenuClickListener;
@@ -28,7 +29,7 @@ import java.util.ArrayList;
 
 public class FoodFragment extends Fragment implements IItemClickListener, IMenuClickListener {
 
-    FoodFragmentBinding binding;
+    private FoodFragmentBinding binding;
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -44,11 +45,11 @@ public class FoodFragment extends Fragment implements IItemClickListener, IMenuC
 
     @Override
     public void onMenuClickFunc(MenuViewModel model) {
-        ArrayList<SelectedItemViewModel> sic = new ArrayList<>();
-        sic.add(new SelectedItemViewModel(model.name, model.price, model.image));
+        ArrayList<SelectedItemViewModel> newModel = new ArrayList<>();
+        newModel.add(new SelectedItemViewModel(model.name, model.price, model.image));
 
         binding.foodsList.setLayoutManager(new LinearLayoutManager(getContext(),LinearLayoutManager.VERTICAL, false));
-        binding.foodsList.setAdapter(new SelectedItemAdapter(sic,this));
+        binding.foodsList.setAdapter(new SelectedItemAdapter(newModel,this));
     }
 
     private void loadFood(){

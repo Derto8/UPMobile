@@ -10,11 +10,13 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.annotation.GlideModule;
 import com.example.upmobile.ItemScreen;
 import com.example.upmobile.R;
 import com.example.upmobile.interfaces.IItemClickListener;
 import com.example.upmobile.main_elements.models.SelectedItemViewHolder;
 import com.example.upmobile.main_elements.models.SelectedItemViewModel;
+import com.google.android.material.navigation.NavigationView;
 
 import java.util.ArrayList;
 
@@ -25,9 +27,10 @@ public class SelectedItemAdapter extends RecyclerView.Adapter<SelectedItemViewHo
     public int count;
 
     public SelectedItemAdapter(ArrayList<SelectedItemViewModel> item,IItemClickListener iItemClickListener) {
-        sItem = sItem;
+        sItem = item;
         _iItemClickListener = iItemClickListener;
     }
+
     @NonNull
     @Override
     public SelectedItemViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -51,7 +54,7 @@ public class SelectedItemAdapter extends RecyclerView.Adapter<SelectedItemViewHo
                 _iItemClickListener.onItemClickFunc();
             }
         });
-        holder.itemView.findViewById(R.id.bntAddToCart).setOnClickListener(v -> {
+        holder.itemView.findViewById(R.id.btnAddToCart).setOnClickListener(v -> {
             if (_iItemClickListener != null) {
                 holder.itemView.findViewById(R.id.SelectedItem).setVisibility(View.GONE);
                 holder.itemView.findViewById(R.id.AddToCart).setVisibility(View.VISIBLE);
@@ -100,6 +103,6 @@ public class SelectedItemAdapter extends RecyclerView.Adapter<SelectedItemViewHo
 
     @Override
     public int getItemCount() {
-        return 0;
+        return sItem.size();
     }
 }

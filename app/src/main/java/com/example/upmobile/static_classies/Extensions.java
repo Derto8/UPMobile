@@ -50,9 +50,43 @@ public class Extensions {
     private static ConnDB connDB;
     private static SQLiteDatabase db;
 
-    public static void createTableFoods(){
+    public static void createTableFoods(Context context){
+        connDB = new ConnDB(context);
         db = connDB.getWritableDatabase();
         db.execSQL("CREATE TABLE foods ("
+                + "id INTEGER PRIMARY KEY AUTOINCREMENT, "
+                + "name" + " TEXT,"
+                + "price" + " TEXT,"
+                + "img" + " TEXT"
+                + ")");
+    }
+
+    public static void createTableDrinks(Context context){
+        connDB = new ConnDB(context);
+        db = connDB.getWritableDatabase();
+        db.execSQL("CREATE TABLE drinks ("
+                + "id INTEGER PRIMARY KEY AUTOINCREMENT, "
+                + "name" + " TEXT,"
+                + "price" + " TEXT,"
+                + "img" + " TEXT"
+                + ")");
+    }
+
+    public static void createTableSauce(Context context){
+        connDB = new ConnDB(context);
+        db = connDB.getWritableDatabase();
+        db.execSQL("CREATE TABLE snacks ("
+                + "id INTEGER PRIMARY KEY AUTOINCREMENT, "
+                + "name" + " TEXT,"
+                + "price" + " TEXT,"
+                + "img" + " TEXT"
+                + ")");
+    }
+
+    public static void createTableSnacks(Context context){
+        connDB = new ConnDB(context);
+        db = connDB.getWritableDatabase();
+        db.execSQL("CREATE TABLE sauce ("
                 + "id INTEGER PRIMARY KEY AUTOINCREMENT, "
                 + "name" + " TEXT,"
                 + "price" + " TEXT,"

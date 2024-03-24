@@ -20,8 +20,8 @@ public class MainAdapter extends FragmentStateAdapter {
         switch (position){
             case 0: return new FoodFragment();
             case 1: return new DrinkFragment();
-            case 2: return  new SauceFragment();
-            case 3: return new SnackFragment();
+            case 2: return  new SnackFragment();
+            case 3: return new SauceFragment();
             default: return new FoodFragment();
         }
     }

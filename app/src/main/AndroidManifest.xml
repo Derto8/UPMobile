@@ -19,15 +19,31 @@
         android:theme="@style/Theme.UPMobile"
         tools:targetApi="31">
 
+        <activity android:name=".ItemScreen"
+            android:exported="false"/>
+        <activity android:name=".main_elements.menu_fragments.FoodFragment"
+            android:exported="false"/>
+        <activity android:name=".main_elements.menu_fragments.DrinkFragment"
+            android:exported="false"/>
+        <activity android:name=".main_elements.menu_fragments.SauceFragment"
+            android:exported="false"/>
+        <activity android:name=".main_elements.menu_fragments.SnackFragment"
+            android:exported="false"/>
+
         <activity android:name=".SignUpScreen"
             android:exported="false"/>
         <activity android:name=".SignInScreen"
             android:exported="false"/>
         <activity android:name=".LaunchScreen"
             android:exported="false"/>
+<!--        <activity android:name=".MainScreen"-->
+<!--            android:exported="false"/>-->
+
+        <activity android:name=".main_elements.MainFragment"
+            android:exported="false"/>
 
         <activity
-            android:name=".BordingScreen"
+            android:name=".MainScreen"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
