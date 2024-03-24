@@ -4,18 +4,31 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
 
+import com.example.upmobile.main_elements.menu_fragments.DrinkFragment;
+import com.example.upmobile.main_elements.menu_fragments.FoodFragment;
+import com.example.upmobile.main_elements.menu_fragments.SauceFragment;
+import com.example.upmobile.main_elements.menu_fragments.SnackFragment;
+
 public class MainAdapter extends FragmentStateAdapter {
-    public MainAdapter(@NonNull Fragment fragment) { super(fragment);}
+    public MainAdapter(@NonNull Fragment fragment) {
+        super(fragment);
+    }
 
     @NonNull
     @Override
     public Fragment createFragment(int position) {
-        return null;
+        switch (position){
+            case 0: return new FoodFragment();
+            case 1: return new DrinkFragment();
+            case 2: return  new SauceFragment();
+            case 3: return new SnackFragment();
+            default: return new FoodFragment();
+        }
     }
 
 
     @Override
     public int getItemCount() {
-        return 0;
+        return 4;
     }
 }
