@@ -21,6 +21,7 @@ import com.example.upmobile.databinding.MainScreenFragmetBinding;
 import com.example.upmobile.interfaces.IItemClickListener;
 import com.example.upmobile.interfaces.IMenuClickListener;
 import com.example.upmobile.main_elements.models.MenuViewModel;
+import com.example.upmobile.main_elements.models.SelectedItemViewModel;
 import com.google.android.material.tabs.TabLayout;
 
 import java.util.ArrayList;
@@ -105,7 +106,11 @@ public class MainFragment extends Fragment implements IMenuClickListener, IItemC
 
     @Override
     public void onMenuClickFunc(MenuViewModel model) {
+        ArrayList<SelectedItemViewModel> sic = new ArrayList<>();
+        sic.add(new SelectedItemViewModel(model.name, model.price, model.image));
 
+        binding.searchResult.setLayoutManager(new LinearLayoutManager(getContext(),LinearLayoutManager.VERTICAL, false));
+        binding.searchResult.setAdapter(new SelectedItemAdapter(sic, this));
     }
 
     @Override

@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.SimpleCursorAdapter;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -15,31 +14,31 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.example.upmobile.ConnDB;
+import com.example.upmobile.databinding.FoodFragmentBinding;
 import com.example.upmobile.interfaces.IItemClickListener;
 import com.example.upmobile.interfaces.IMenuClickListener;
-import com.example.upmobile.main_elements.MainAdapter;
 import com.example.upmobile.main_elements.MenuAdapter;
 import com.example.upmobile.main_elements.SelectedItemAdapter;
 import com.example.upmobile.main_elements.models.MenuViewModel;
-import com.example.upmobile.databinding.FoodFragmentBinding;
+import com.example.upmobile.databinding.DrinksFragmentBinding;
 import com.example.upmobile.main_elements.models.SelectedItemViewModel;
 
 import java.util.ArrayList;
 
-public class FoodFragment extends Fragment implements IItemClickListener, IMenuClickListener {
+public class DrinksFragment extends Fragment implements IItemClickListener, IMenuClickListener {
 
-    FoodFragmentBinding binding;
+    DrinksFragmentBinding binding;
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        binding = FoodFragmentBinding.inflate(inflater, container, false);
-        loadFood();
+        binding = DrinksFragmentBinding.inflate(inflater, container, false);
+        loadDrinks();
         return binding.getRoot();
     }
-
     @Override
     public void onItemClickFunc() {
-        loadFood();
+        loadDrinks();
     }
 
     @Override
@@ -47,15 +46,15 @@ public class FoodFragment extends Fragment implements IItemClickListener, IMenuC
         ArrayList<SelectedItemViewModel> sic = new ArrayList<>();
         sic.add(new SelectedItemViewModel(model.name, model.price, model.image));
 
-        binding.foodsList.setLayoutManager(new LinearLayoutManager(getContext(),LinearLayoutManager.VERTICAL, false));
-        binding.foodsList.setAdapter(new SelectedItemAdapter(sic,this));
+        binding.drinksList.setLayoutManager(new LinearLayoutManager(getContext(),LinearLayoutManager.VERTICAL, false));
+        binding.drinksList.setAdapter(new SelectedItemAdapter(sic,this));
     }
 
-    private void loadFood(){
-        ArrayList<MenuViewModel> foods = new ArrayList<>();
-        ConnDB dbHelper = new ConnDB(getContext());
-        SQLiteDatabase db = dbHelper.getReadableDatabase();
-        Cursor cursor = db.rawQuery("SELECT * FROM foods", null);
+    public void loadDrinks(){
+        ArrayList<MenuViewModel> drinks = new ArrayList<>();
+        ConnDB connDb = new ConnDB(getContext());
+        SQLiteDatabase db = connDb.getReadableDatabase();
+        Cursor cursor = db.rawQuery("SELECT * FROM drinks", null);
 
         if (cursor.moveToFirst()) {
             do {
@@ -65,12 +64,12 @@ public class FoodFragment extends Fragment implements IItemClickListener, IMenuC
                 String name = cursor.getString(ni);
                 String price = cursor.getString(pi);
                 String img = cursor.getString(ii);
-                foods.add(new MenuViewModel(name, price, img));
+                drinks.add(new MenuViewModel(name,price,img));
             } while (cursor.moveToNext());
             cursor.close();
 
-            binding.foodsList.setLayoutManager(new GridLayoutManager(getContext(), 2, GridLayoutManager.VERTICAL, false));
-            binding.foodsList.setAdapter(new MenuAdapter(foods,this));
+            binding.drinksList.setLayoutManager(new GridLayoutManager(getContext(), 2, GridLayoutManager.VERTICAL, false));
+            binding.drinksList.setAdapter(new MenuAdapter(drinks,this));
         }
     }
 }

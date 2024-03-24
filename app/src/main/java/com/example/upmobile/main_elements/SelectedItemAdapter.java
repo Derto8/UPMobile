@@ -23,6 +23,11 @@ public class SelectedItemAdapter extends RecyclerView.Adapter<SelectedItemViewHo
     private ArrayList<SelectedItemViewModel> sItem = new ArrayList<>();
     private IItemClickListener _iItemClickListener;
     public int count;
+
+    public SelectedItemAdapter(ArrayList<SelectedItemViewModel> item,IItemClickListener iItemClickListener) {
+        sItem = sItem;
+        _iItemClickListener = iItemClickListener;
+    }
     @NonNull
     @Override
     public SelectedItemViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
