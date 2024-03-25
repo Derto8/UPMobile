@@ -36,14 +36,14 @@
             android:exported="false"/>
         <activity android:name=".LaunchScreen"
             android:exported="false"/>
-<!--        <activity android:name=".MainScreen"-->
-<!--            android:exported="false"/>-->
+        <activity android:name=".MainScreen"
+            android:exported="false"/>
 
         <activity android:name=".main_elements.MainFragment"
             android:exported="false"/>
 
         <activity
-            android:name=".MainScreen"
+            android:name=".BordingScreen"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

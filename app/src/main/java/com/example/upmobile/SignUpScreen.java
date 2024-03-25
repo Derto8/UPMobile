@@ -77,7 +77,8 @@ public class SignUpScreen extends AppCompatActivity {
 
                                         startActivity(new Intent(SignUpScreen.this, LaunchScreen.class));
                                         finish();
-                                    }
+                                    } else
+                                        Extensions.AlertDialog("Оповещение", "При регистрации произошла ошибка", SignUpScreen.this);
                                 }
                             });
                 }
