@@ -2,6 +2,7 @@ package com.example.upmobile.main_elements;
 
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -25,6 +26,8 @@ import com.example.upmobile.main_elements.models.SelectedItemViewModel;
 import com.google.android.material.tabs.TabLayout;
 
 import java.util.ArrayList;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class MainFragment extends Fragment implements IMenuClickListener, IItemClickListener {
     MainScreenFragmetBinding binding;
@@ -89,6 +92,14 @@ public class MainFragment extends Fragment implements IMenuClickListener, IItemC
                 }
             });
         });
+
+        binding.clickonAdress.setOnClickListener(c -> {
+            Matcher match = Pattern.compile("^([а-яА-ЯёЁa-zA-Z0-9 ,.-]+,){2}[а-яА-ЯёЁa-zA-Z0-9 ,.-]+$").matcher(binding.adresSearch.getText().toString());
+            if(match.matches())
+                binding.adresSearch.setTextColor(Color.GREEN);
+            else binding.adresSearch.setTextColor(Color.RED);
+        });
+
         binding.clickAdres.setOnClickListener(v -> {
             binding.Lmeal.setVisibility(View.GONE);
             binding.Ladress.setVisibility(View.VISIBLE);

@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -98,6 +99,18 @@ public class SelectedItemAdapter extends RecyclerView.Adapter<SelectedItemViewHo
 
                 context.startActivity(intent);
             }
+        });
+
+        holder.itemView.findViewById(R.id.minus).setOnClickListener(c ->{
+            TextView countTv = holder.itemView.findViewById(R.id.count);
+            int countFood = Integer.parseInt(countTv.getText().toString());
+            if(countFood >= 2) countTv.setText(String.valueOf(countFood - 1));
+        });
+
+        holder.itemView.findViewById(R.id.plus).setOnClickListener(c ->{
+            TextView countTv = holder.itemView.findViewById(R.id.count);
+            int countFood = Integer.parseInt(countTv.getText().toString()) + 1;
+            countTv.setText(String.valueOf(countFood));
         });
     }
 
